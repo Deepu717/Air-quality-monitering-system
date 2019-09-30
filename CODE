@@ -1,0 +1,25 @@
+//# Air-quality-monitering-system
+//SMART INNOVATIONS
+#include <LiquidCrystal.h> // include the library
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // pins connected to lcd display
+
+int smokeA0 = A0;// analogpin 
+
+void setup() {
+  
+  pinMode(smokeA0, INPUT);//input pin to arduino
+  Serial.begin(9600);
+  lcd.begin(16,2);
+}
+
+void loop() {
+  
+  int analogSensor = analogRead(smokeA0);
+
+  Serial.print("Pin A0: ");
+  Serial.println(analogSensor);// serial print sensor value
+  lcd.print("Smoke Level:");
+  lcd.print(analogSensor);//lcd print sensor value
+  delay(500);
+  lcd.clear();
+}
